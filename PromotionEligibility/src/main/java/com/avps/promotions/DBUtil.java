@@ -1,4 +1,4 @@
-package com.rccl.main;
+package com.avps.promotions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 

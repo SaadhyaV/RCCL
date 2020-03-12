@@ -1,4 +1,4 @@
-package com.rccl.main;
+package com.avps.promotions;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -51,7 +51,7 @@ public class PromotionsService {
 
 		String sql = "insert into rcclpromotions(PromotionName, PromotionState, DiscountAmount, MilitaryManStatus, StartDate, EndDate) values(?, ?, ?, ?,?, ?)";
  try {
-			queryRunner.update(conn, sql, promotions.getName(),promotions.getState(),
+			queryRunner.update(conn, sql, promotions.getPromotionName(),promotions.getPromotionState(),
 					promotions.getDiscountAmount(),  promotions.getMilitaryManStatus(), promotions.getStartDate(), promotions.getEndDate()
 					);
  } catch (SQLException e) {
@@ -68,30 +68,30 @@ public class PromotionsService {
 	 * @throws SQLException
 	 *             - when error occurs with DB operations
 	 */
-//	public static List<Promotions> list(Promotions Promotions) throws SQLException {
-//			try {
-//
-//			Statement statement = conn.createStatement();
-//			String querySelect = "select * from Promotionsdetails where email= '" + Promotions.getEmail() + "'";
-//			resultSet = statement.executeQuery(querySelect);
-//			while (resultSet.next()) {
-//				Promotions rowPromotions = new Promotions();
-//				rowPromotions.setName(resultSet.getString("name"));
-//				rowPromotions.setPreviousDate(resultSet.getDate("PreviousDate"));
-//				rowPromotions.setDrivingExperience(resultSet.getInt("DrivingExperience"));
-//				rowPromotions.setAge(resultSet.getInt("age"));
-//				rowPromotions.setCity(resultSet.getString("city"));
-//				rowPromotions.setEmail(resultSet.getString("email"));
-//				rows.add(rowPromotions);
-//			}
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//
-//			return rows;
-//		}
-//
+	public static List<Promotions> list(Promotions promotions) throws SQLException {
+			try {
+
+			Statement statement = conn.createStatement();
+			String querySelect = "select * from rcclpromotions";
+			resultSet = statement.executeQuery(querySelect);
+			while (resultSet.next()) {
+				Promotions rowPromotions = new Promotions();
+				rowPromotions.setPromotionName(resultSet.getString("PromotionName"));
+				rowPromotions.setPromotionState(resultSet.getString("PromotionState"));
+				rowPromotions.setDiscountAmount(resultSet.getInt("DiscountAmount"));
+				rowPromotions.setMilitaryManStatus(resultSet.getString("MilitaryManStatus"));
+				rowPromotions.setStartDate(resultSet.getDate("StartDate"));
+				rowPromotions.setEndDate(resultSet.getDate("EndDate"));
+				rows.add(rowPromotions);
+			}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return rows;
+		}
+
 //	public static Promotions getList(Promotions Promotions) throws SQLException {
 //		try {
 //

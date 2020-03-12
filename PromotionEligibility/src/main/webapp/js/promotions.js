@@ -1,5 +1,70 @@
 var app = angular.module("promotionApp", []);
 
+app.controller("displayPromotionCtrl", function($scope, $http){
+	 $scope.statenames = [
+		 "Select states",
+		    "Florida",
+		   "Georgia",
+		   "New Jersey",
+		   "California",
+		   "Texas",
+		   "Maryland",
+		   "louisana",
+		   "Washington",
+		   "Massachusetts",
+		   "Puerto Rico"
+		  ];
+	$http({
+		method:'GET',
+		url:'http://localhost:8065/api/promotions',
+		headers:'application/json'
+	}).then(function success(response){
+		console.log(response.data);
+		$scope.promotionsData = response.data;
+	}, 
+		function error(response){
+			console.log("error found");
+			console.log(response.data);	
+	});
+	$scope.deletePromotions = function(id){
+		console.log("Deleting id : "+id);
+		$http({
+			method:'DELETE',
+			url:'http://localhost:8065/api/deletepromotions/'+ id,
+			headers:{'Content-Type':'application/json'}
+		}).then(function success(response){
+			console.log(response.data);
+			
+		}, 
+			function error(response){
+				console.log("error found");
+				console.log(response.data);
+		});	
+	};
+	$scope.clickedPromotions = {};
+	
+	$scope.selectPromotion = function(x){
+		console.log(x);
+		$scope.clickedPromotions = x;
+	}
+	$scope.updatePromotions = function(){
+		$http({
+			method:'POST',
+			url:'http://localhost:8065/api/updatepromotions',
+			data:angular.toJson($scope.clickedPromotions),
+			headers:{'Content-Type':'application/json'}
+		}).then(function success(response){
+			console.log(response.data);			
+		}, 
+			function error(response){
+				console.log("error found");
+				console.log(response.data);
+		});	
+	}
+
+	
+});
+
 app.controller("promotionCtrl", function($scope, $http){
 	 $scope.statenames = [
 		 "Select states",
@@ -19,32 +84,26 @@ app.controller("promotionCtrl", function($scope, $http){
 		 "Working"
 	 ];
 	$scope.promotions = {
-		name:"",
-		state:"",
-		age:"",
-		militaryManStatus:"",
+		promotionName:"",
+		promotionState:"",
+		discountAmount:"",
 		startDate:"",
 		endDate:""		
 	};
-	$scope.getPromotions = function(){
+	$scope.setPromotions = function(){
 		$http({
 			method:'POST',
-			url:'/sendData',
+			url:'http://localhost:8065/api/setpromotions',
 			data: angular.toJson($scope.promotions),
 			headers:{'Content-Type':'application/json'}
 		}).then(function success(response){
 			console.log(response.data);
+//			$scope.promotionsData = response.data;
 		}, 
 			function error(response){
 				console.log("error found");
 				console.log(response.data);
-		})	
-	}
-	
+		});	
+	};
+		
 });
-//<i class="fas fa-search-location prefix grey-text"></i>
-//<select id="form2" ng-options="item for item in statenames" ng-model="customer.state" class="browser-default custom-select">
-//</select>
-
-//<input type="text" id="form4" ng-model="customer." class="form-control">
-//<label for="form4">Military man</label>
