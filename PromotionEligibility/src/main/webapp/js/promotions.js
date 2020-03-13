@@ -33,19 +33,32 @@ app.controller("displayPromotionCtrl", function($scope, $http){
 			url:'http://localhost:8065/api/deletepromotions/'+ id,
 			headers:{'Content-Type':'application/json'}
 		}).then(function success(response){
-			console.log(response.data);			
+			console.log(response.data);	
+			$window.location.reload();
 		}, 
 			function error(response){
 				console.log("error found");
 				console.log(response.data);
+				
 		});	
 	};
-	$scope.clickedPromotions = {};
+	$scope.clickedPromotions = {
+			id : "",
+	        promotionName : "",
+	        promotionState : "",
+	        promotionValidFrom : "",
+	        promotionExpiresAt : "",
+	        discountAmount : ""
+	};
 	
 	$scope.selectPromotion = function(x){
 		console.log(x);
 		$scope.clickedPromotions = x;
+		$scope.clickedPromotions.startDate = new Date($scope.clickedPromotions.startDate);
+		$scope.clickedPromotions.endDate = new Date($scope.clickedPromotions.endDate);
 	}
+	
+	
 	$scope.updatePromotions = function(){
 		$http({
 			method:'POST',
@@ -53,11 +66,13 @@ app.controller("displayPromotionCtrl", function($scope, $http){
 			data:angular.toJson($scope.clickedPromotions),
 			headers:{'Content-Type':'application/json'}
 		}).then(function success(response){
-			console.log(response.data);			
+			console.log(response.data);	
+			$window.location.reload();
 		}, 
 			function error(response){
 				console.log("error found");
 				console.log(response.data);
+				
 		});	
 	}
 
