@@ -112,10 +112,12 @@ app.controller("promotionCtrl", function($scope, $http){
 			headers:{'Content-Type':'application/json'}
 		}).then(function success(response){
 			console.log(response.data);
+			$window.location.reload();
 //			$scope.promotionsData = response.data;
 		}, 
 			function error(response){
 				console.log("error found");
+				$window.location.reload();
 				console.log(response.data);
 		});	
 	};
