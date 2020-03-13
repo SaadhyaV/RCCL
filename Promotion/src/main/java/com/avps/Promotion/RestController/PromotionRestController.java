@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.avps.Promotion.Dao.PromotionRepository;
 import com.avps.Promotion.Entity.Promotion;
@@ -28,16 +29,18 @@ public class PromotionRestController {
 		promotionService = theEmployeeService;
 	}
 
+	
 	// expose "/employees" and return list of employees
-	@CrossOrigin(origins = "http://localhost:9091")
-	@GetMapping("/promotions")
+//	@CrossOrigin(origins = "http://localhost:9090")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@GetMapping(value="/promotions", headers="Accept=application/json")
 	public List<Promotion> findAll() {
 		return promotionService.findAll();
 	}
 
 	// add mapping for GET /employees/{employeeId}
 
-	@CrossOrigin(origins = "http://localhost:9091")
+	@CrossOrigin(origins = "*", allowedHeaders="*")
 	@GetMapping("/promotions/{promotionId}")
 	public Promotion getEmployee(@PathVariable int promotionId) {
 
@@ -51,7 +54,8 @@ public class PromotionRestController {
 	}
 
 	// add mapping for POST /employees - add new employee
-	@CrossOrigin(origins = "http://localhost:9091")
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping(value = "/setpromotions", headers = "Accept=application/json")
 	public Promotion addEmployee(@RequestBody Promotion thePromotion) {
 
@@ -66,7 +70,8 @@ public class PromotionRestController {
 	}
 
 	// add mapping for PUT /employees - update existing employee
-	@CrossOrigin(origins = "http://localhost:9091")
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping("/updatepromotions")
 	public Promotion updateEmployee(@RequestBody Promotion thePromotion) {
 		  	thePromotion = promotionService.save(thePromotion);
@@ -75,7 +80,8 @@ public class PromotionRestController {
 	}
 
 	// add mapping for DELETE /employees/{employeeId} - delete employee
-	@CrossOrigin(origins = "http://localhost:9091")
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping("/deletepromotions/{promotionId}")
 	public String deleteEmployee(@PathVariable int promotionId) {
 

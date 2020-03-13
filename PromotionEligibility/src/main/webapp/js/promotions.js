@@ -17,7 +17,7 @@ app.controller("displayPromotionCtrl", function($scope, $http){
 	$http({
 		method:'GET',
 		url:'http://localhost:8065/api/promotions',
-		headers:'application/json'
+		headers:{'Content-Type':'application/json'}
 	}).then(function success(response){
 		console.log(response.data);
 		$scope.promotionsData = response.data;
@@ -33,8 +33,7 @@ app.controller("displayPromotionCtrl", function($scope, $http){
 			url:'http://localhost:8065/api/deletepromotions/'+ id,
 			headers:{'Content-Type':'application/json'}
 		}).then(function success(response){
-			console.log(response.data);
-			
+			console.log(response.data);			
 		}, 
 			function error(response){
 				console.log("error found");

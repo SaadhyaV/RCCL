@@ -315,7 +315,7 @@
 		      <td>{{x.discountAmount}}</td>
 		      <td>{{x.startDate}}</td>
 		      <td>{{x.endDate}}</td>
-		      <td><button class="btn btn-success rounded-circle" ng-click="selectPromotion(x)" data-toggle="modal" data-target="#mdbModal">Edit</button>
+		      <td><button class="btn btn-primary rounded-circle" ng-click="selectPromotion(x)" data-toggle="modal" data-target="#mdbModal">Edit</button>
 		      <td><button class="btn btn-danger rounded" ng-click="deletePromotions(x.id)">Delete</button>
 		    </tr>
 	<div id="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -335,7 +335,7 @@
                   <div class="md-form">
                     <i class="fas fa-user prefix grey-text"></i>
                     <input type="text" id="form1" ng-model="clickedPromotions.promotionName" class="form-control">
-                    <label for="form1">Promotions name</label>
+                    <label for="form1"></label>
                   </div>
                    
                   <div class="md-form">
@@ -373,7 +373,7 @@
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-indigo waves-light" ng-click="updatePromotions()">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
