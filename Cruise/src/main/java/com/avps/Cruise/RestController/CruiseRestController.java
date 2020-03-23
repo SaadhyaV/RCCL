@@ -1,11 +1,7 @@
 package com.avps.Cruise.RestController;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.validation.Valid;
 
@@ -41,41 +37,45 @@ public class CruiseRestController {
 		return cruiseService.findAll();
 	}
 
+
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	// @GetMapping("/cruises/{state}")
-	@RequestMapping(value = "/cruises/{state}", method = RequestMethod.GET)
+	@GetMapping("/cruisesState/{state}")
+	// @RequestMapping(value = "/cruises/{state}", method = RequestMethod.GET)
 	public Cruise findByState(@PathVariable String state) {
+		System.out.println(state);
 		return cruiseService.findByState(state);
 	}
+
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/cruises/{state}/{destination}")
 	public Cruise getAllCruise(@PathVariable String state, @PathVariable String destination) {
 		return cruiseService.findAllByStateAndDestination(state, destination);
 	}
-	// @RequestMapping(method = RequestMethod.GET)
-	// public List<Brand> getBrand(@RequestParam(value="name") String name) {
 
+	
+	
+	
+	
+	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@RequestMapping(value = "/cruises/{startDate}", method = RequestMethod.GET)
-	// @GetMapping("/cruises/{startDate}")
-	public Cruise findByStartDate(@PathVariable String startDate) {
+	@RequestMapping(value = "/cruisesDate/{cruiseDate}", method = RequestMethod.GET)
+	public Cruise findByCruiseDate(@PathVariable Date cruiseDate) {
 
-		TimeZone tz = TimeZone.getTimeZone("UTC");
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
-		df.setTimeZone(tz);
-		String nowAsISO = df.format(startDate);
-
-		Date date1 = null;
-		try {
-			date1 = new SimpleDateFormat("dd/MM/yyyy").parse(nowAsISO);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		System.out.println(nowAsISO + "\t" + date1);
-		return cruiseService.findByStartDate(nowAsISO);
+		System.out.println("start Date: " + cruiseDate);
+		Cruise sd = cruiseService.findByStartDate(cruiseDate);
+		System.out.println(sd);
+		return sd;
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	// @GetMapping("cruisesAll/{state}/{destination}/{cruiseDate}")
+	@RequestMapping(value = "cruisesAll/{state}/{destination}/{cruiseDate}", method = RequestMethod.GET)
+	public List<Cruise> getCruiseByAll(@PathVariable String state, @PathVariable String destination,
+			@PathVariable Date cruiseDate) {
+		System.out.println("cruise date: " + cruiseDate);
+		return cruiseService.findAllBySDC(state, destination, cruiseDate);
+	}
 	// add mapping for GET /cruises/{cruiseId}
 	// @CrossOrigin(origins = "*", allowedHeaders = "*")
 	// @GetMapping("/cruises/{cruiseId}")

@@ -11,28 +11,28 @@ public class Cruise {
 	public Integer _id;
 	
 	private String shipName;
-	private Date startDate;
-	private Date endDate;
+	private Date cruiseDate;
 	private String destination;
 	private String state;
 	private String departurePort;
+	private String cruiseName;
 	
 	public Cruise() {
 		
 	}
 
-
-	public Cruise(Integer _id, String shipName, Date startDate, Date endDate, String destination, String state,
-			String departurePort) {
+	public Cruise(Integer _id, String shipName, Date cruiseDate, String destination, String state,
+			String departurePort, String cruiseName) {
 		super();
 		this._id = _id;
 		this.shipName = shipName;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.cruiseDate = cruiseDate;
 		this.destination = destination;
 		this.state = state;
 		this.departurePort = departurePort;
+		this.cruiseName = cruiseName;
 	}
+
 
 
 	public String getShipName() {
@@ -43,12 +43,12 @@ public class Cruise {
 		this.shipName = shipName;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getCruiseDate() {
+		return cruiseDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setCruiseDate(Date cruiseDate) {
+		this.cruiseDate = cruiseDate;
 	}
 
 	public String getDeparturePort() {
@@ -68,17 +68,6 @@ public class Cruise {
 		this._id = _id;
 	}
 
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-
-
 	public String getDestination() {
 		return destination;
 	}
@@ -95,10 +84,19 @@ public class Cruise {
 		state = sstate;
 	}
 
+	public String getCruiseName() {
+		return cruiseName;
+	}
+
+	public void setCruiseName(String cruiseName) {
+		this.cruiseName = cruiseName;
+	}
+
 	@Override
 	public String toString() {
-		return "Cruise [_id=" + _id + ", shipName=" + shipName + ", startDate=" + startDate + ",endDate=" + endDate
-				+ ", destination=" + destination + ", state= " + state + ",departurePort=" + departurePort + "]";
+		return "Cruise [_id=" + _id + ", shipName=" + shipName + ", cruiseDate=" + cruiseDate + ", destination="
+				+ destination + ", state= " + state + ",departurePort=" + departurePort + ", cruiseName=" + cruiseName
+				+ "]";
 	}
 
 	

@@ -1,9 +1,11 @@
 package com.avps.Cruise.Service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.avps.Cruise.Dao.CruiseRepository;
 import com.avps.Cruise.Entity.Cruise;
@@ -22,7 +24,7 @@ public class CruiseServiceImpl {
 		return cruiseRepository.findAll();
 	}
 
-	public Cruise findByState(String state) {
+	public Cruise findByState(@PathVariable("state") String state) {
 		return cruiseRepository.findByState(state);
 	}
 
@@ -31,8 +33,12 @@ public class CruiseServiceImpl {
 		return cruiseRepository.findAllByStateAndDestination(state, destination);
 	}
 
-	public Cruise findByStartDate(String startDate) {
-		return cruiseRepository.findByStartDate(startDate);
+	public Cruise findByStartDate(Date cruiseDate) {
+		return cruiseRepository.findByCruiseDate(cruiseDate);
+	}
+
+	public List<Cruise> findAllBySDC(String state, String destination, Date cruiseDate) {
+		return cruiseRepository.findByStateAndDestinationAndCruiseDate(state, destination, cruiseDate);
 	}
 
 	// public Cruise findById(@PathVariable("id") Integer theId) {

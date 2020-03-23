@@ -7,36 +7,35 @@ app
 
 					$scope.statenames = [ "Select states", "Florida",
 							"Georgia", "New Jersey", "California", "Texas",
-							"Maryland", "louisana", "Washington",
-							"Massachusetts", "Puerto Rico" ];
+							"Maryland", "Louisana", "Washington",
+							"British Columbia", "Massachusetts", "Puerto Rico" ];
 					$scope.destinations = [ "Alaska", "Asia",
 							"Australia & New Zealand", "Bahamas", "Bermuda",
 							"Canada & New England", "Caribbean", "Europe",
 							"Hawaii", "North America", "Pacific Northwest",
 							"Panama Canal", "Repositioning", "South Pacific",
-							"Speciality Cruises", "Transatlantic",
-							"Transpacific" ];
+							"Transatlantic", "Transpacific" ];
 					$scope.cruise = {
 						_id : "",
-						destination : "",
 						state : "",
+						destination : "",
 						departurePort : "",
 						shipName : "",
-						startDate : "",
-						endDate : "",
+						cruiseDate : "",
+						cruiseName : ""
 					}
-					$scope.cruise.startDate = new Date($scope.cruise.startDate);
-					$scope.cruise.endDate = new Date($scope.cruise.endDate);
 
 					$scope.findCruises = function() {
 						console.log("Searching started!");
 						$http(
 								{
 									method : 'GET',
-									url : 'http://localhost:8066/api/cruises/'
-									// + $scope.cruise.startDate,
-									+ $scope.cruise.state + '/'
-											+ $scope.cruise.destination,
+									url : 'http://localhost:8066/api/cruisesAll/'
+											+ $scope.cruise.state
+											+ '/'
+											+ $scope.cruise.destination
+											+ '/'
+											+ $scope.cruise.cruiseDate,
 									data : angular.toJson($scope.cruise),
 									headers : {
 										'Content-Type' : 'application/json'
@@ -46,16 +45,15 @@ app
 										function success(response) {
 											console.log(response.data);
 											$scope.Cruises = response.data;
-											// $scope.Cruises.startDate = new
-											// Date($scope.Cruises.startDate);
-											// $scope.Cruises.endDate = new
-											// Date($scope.Cruises.endDate);
-
-										},
-										function error(response) {
+											console.log($scope.Cruises.length);
+											if ($scope.Cruises.length == 0) {
+												$scope.error = "No cruise on that particular day you are searching for";
+											} else {
+												$scope.success = "Here are the results...!";
+											}
+										}, function error(response) {
 											console.log("error found");
 											console.log(response.data);
-											$scope.error = "No cruise on that particular day you are searching for"
 
 										});
 
@@ -77,6 +75,13 @@ app.controller("displayCruiseCtrl", function($scope, $http) {
 		console.log(response.data);
 	});
 });
-// $scope.Cruises.startDate = new Date($scope.Cruises.startDate);
-// $scope.Cruises.endDate = new Date($scope.Cruises.endDate);
-// ng-controller="displayCruiseCtrl"
+
+// Basic example
+$(document).ready(function() {
+	$('#dtBasicExample2').DataTable({
+		"pagingType" : "simple" // "simple" option for 'Previous' and 'Next'
+	// buttons
+	// only
+	});
+	$('.dataTables_length').addClass('bs-select');
+});

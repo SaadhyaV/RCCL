@@ -11,9 +11,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import com.avps.Cruise.RestController.CruiseRestController;
 
-@SpringBootApplication
 @EnableMongoRepositories
 @ComponentScan({ "com.avps.Cruise.RestController", "com.avps.Cruise.Service" })
+@SpringBootApplication
 public class Application {
 	
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
