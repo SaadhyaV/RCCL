@@ -32,11 +32,11 @@ public class CruiseRepositoryTest {
 		}
 	}
 
-	@Test
-	public void findByState() {
-		Cruise s = cruiseRepo.findByState("Florida");
-		System.out.println("find by state: " + s);
-	}
+	// @Test
+	// public void findByState() {
+	// Cruise s = cruiseRepo.findByState("Florida");
+	// System.out.println("find by state: " + s);
+	// }
 
 	@Test
 	public void findByDate() {
