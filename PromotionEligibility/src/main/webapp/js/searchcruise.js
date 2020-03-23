@@ -48,8 +48,10 @@ app
 											console.log($scope.Cruises.length);
 											if ($scope.Cruises.length == 0) {
 												$scope.error = "No cruise on that particular day you are searching for";
+												$scope.success = "";
 											} else {
 												$scope.success = "Here are the results...!";
+												$scope.error = "";
 											}
 										}, function error(response) {
 											console.log("error found");
