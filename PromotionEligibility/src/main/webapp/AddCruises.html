@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="promotionApp">
+<html lang="en" ng-app="addCruiseApp">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,11 +7,12 @@
   <link href="img/01.jpg" rel="icon">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
- <!-- JQuery -->
- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
- 
-<script src="js/promotions.js"></script>
-  <title>Create Promotions</title>
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  
+   <script src="js/addcruise.js"></script>
+  
+  <title>Add Cruises</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -19,7 +20,7 @@
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">  
+  <link href="css/style.min.css" rel="stylesheet">
   <!-- MDBootstrap Datatables  -->
   <link href="css/addons/datatables.min.css" rel="stylesheet">
   <!-- MDBootstrap Datatables  -->
@@ -78,10 +79,10 @@
     <div class="container">
 
       <!-- Brand -->
-       <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="#">
         <img src="img/download.jpg" height="30" alt="mdb logo" class="rounded-circle d-inline-block align-top">
       </a>
-
+    
       <!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,13 +98,15 @@
             <a class="nav-link" href="index.html">Home
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#" target="_blank">Create Promotions
-            <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="promotions.html" target="_blank">Create Promotions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="findcruises.html" target="_blank">
-           	Find Cruises
+            <a class="nav-link" href="findcruises.html" target="_blank">Find Cruises</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" target="_blank">
+           <span class="sr-only">(current)</span>Create Cruises
            </a>
           </li>
 <!--      <li class="nav-item">
@@ -135,9 +138,9 @@
   <!-- Full Page Intro -->
   <div class="view">
 
-    <video class="video-intro" poster="img/rccl.jpg" playsinline autoplay
+    <video class="video-intro" poster="img/onboard.jpg" playsinline autoplay
       muted loop>
-      <!-- <source src="https://mdbootstrap.com/img/video/Lines-min.mp4" type="video/mp4">-->
+    <!--  <source src="https://mdbootstrap.com/img/video/Lines-min.mp4" type="video/mp4">-->
     </video>
 
     <!-- Mask & flexbox options-->
@@ -150,6 +153,7 @@
           <strong>Royal Caribbean International</strong>
         </h1>
 
+		
         <h4 class="mb-4">
           <strong>The Seeker Sale + Kids Sale </strong>
         </h4>
@@ -159,7 +163,7 @@
         </h4>
 
         <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Only 3 days left
-          
+           
           <i class="fas fa-graduation-cap ml-2"></i>
         </a>
       </div>
@@ -176,8 +180,8 @@
   <main>
     <div class="container">
 
-      <!--Section: Main info-->
-      <section class="mt-5 wow fadeIn" ng-controller="promotionCtrl">
+ <!--Section: Main info-->
+      <section class="mt-5 wow fadeIn" ng-controller="addCruiseCtrl">
 
         <!--Grid row-->
         <div class="row">
@@ -192,53 +196,74 @@
               <div class="card-body">
 
                 <!-- Form -->
-                <form name="PromotionsForm" ng-submit="setPromotions()">
+                <form name="PromotionsForm" ng-submit="setCruises()">
                   <!-- Heading -->
                   <h3 class="dark-grey-text text-center">
-                    <strong>Set Promotions:</strong>
+                    <strong style="color:#000080">Set Cruises:</strong>
                   </h3>
                   <hr>
 
                   <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form1" ng-model="promotions.promotionName" class="form-control">
-                    <label for="form1">Promotions name</label>
+                    <i class="fas fa-user prefix blue-text"></i>
+                    <input type="text" id="form1" ng-model="cruise.cruiseName" class="form-control">
+                    <label for="form1">Cruise name</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-user prefix blue-text"></i>
+                    <input type="text" id="form2" ng-model="cruise.shipName" class="form-control">
+                    <label for="form2">Ship Name</label>
                   </div>
                    
                   <div class="md-form">
                     <div class="row">
                     <div class="col-md-4">
-                    	<i class="fas fa-search-location prefix grey-text">State</i>
+                    	<i class="fas fa-city  blue-text">&nbsp;&nbsp;State</i>
                     </div>
                      <div class="col-md-8">
-                    	<select id="form2" ng-options="item for item in statenames" ng-model="promotions.promotionState" class="browser-default custom-select">
+                    	<select id="form3" ng-options="item for item in statenames" ng-model="cruise.state" class="browser-default custom-select">
                     	</select>
                     </div>
                     </div>
                   </div>
-
-                  <div class="md-form">
-                    <i class="fas fa-child prefix grey-text"></i>
-                    <input type="number" ng-model="promotions.discountAmount" step="0.01" id="form3" class="form-control">
-                    <label for="form3">Discount Amount</label>
-                  </div>
                   
-                
                   <div class="md-form">
-                    <i class="grey-text">Start Date</i>
-                    <input type="date" id="form6" ng-model="promotions.startDate" class="form-control">
-                    <label for="form6"></label>
+                    <div class="row">
+                    <div class="col-md-4">
+                    	<i class="fas fa-ship blue-text">&nbsp;&nbsp;Destination</i>
+                    </div>
+                     <div class="col-md-8">
+                    	<select id="form4" ng-options="item for item in destinations" ng-model="cruise.destination" class="browser-default custom-select">
+                    	</select>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="md-form">
+	                  <div class="row">
+	                   <div class="col-md-4">
+	                    	 <i class="fas fa-ship blue-text">&nbsp;&nbsp;Departure Port</i>
+	                    </div>
+	                     <div class="col-md-8">
+	                    <select id="form5" ng-options="item for item in ports" ng-model="cruise.deparurePort" class="browser-default custom-select">
+		                   	</select>
+	                    </div>
+	                  </div>
+                  </div>
+ 				 
+                  <div class="md-form">
+                  <i class="fas fa-calendar-alt prefix blue-text"></i>
+                    <input type="date" id="form6" ng-model="cruise.cruiseDate" class="form-control blue-text">
+                    <label for="form6">Cruise Date</label>
                   </div>               
 
-				  <div class="md-form">
-                    <i class="grey-text">End Date </i>
-                    <input type="date" id="form7" ng-model="promotions.endDate" class="form-control">
-                    <label for="form7"></label>
-                  </div>
+				 
                   <div class="text-center">
-                    <button class="btn btn-indigo">Send</button>
+                    <button class="btn btn-indigo">Add</button>
                   </div>
-
+				<style>
+				#form3, #form4, #form5{
+				border:none;
+				border-bottom:2px solid grey;}
+				</style>
                 </form>
                 <!-- Form -->
 
@@ -259,56 +284,45 @@
 <!-- Display Promotions -->
 
     <!--Section: Display info-->
-     <section class="mt-5 wow fadeIn" ng-controller="displayPromotionCtrl">
+     <section class="mt-5 wow fadeIn" ng-controller="displayCruiseCtrl">
 
   	<!-- Grid row -->
     <div class="row">
     
         <!-- Grid column -->        
         <div class="col-md-12 col-xl-12 mb-4">
-        <h1 class="blue-text">Display promotions:</h1>
+        <h1 style="color:#000080">Display cruises:</h1>
         <table id="dtBasicExample" class="table table-dark table-striped table-bordered table-sm" cellspacing="0" width="100%">
 		 <thead>
-		   <tr>
-		     <th class="th-sm red-text font-weight-bold">Promotion Name
-		
-		     </th>
-		     <th class="th-sm red-text font-weight-bold">Promotion State
-		
-		     </th>
-		     <th class="th-sm red-text font-weight-bold">Discount Amount
-		
-		     </th>
-		     <th class="th-sm red-text font-weight-bold">Start Date
-			 </th>
-			 
-		     <th class="th-sm red-text font-weight-bold">End Date
-			 </th>
-			 
-		     <th class="th-sm red-text font-weight-bold">Edit
-			  </th>
-			  
-		     <th class="th-sm red-text font-weight-bold ">Delete
-		     </th>
-		   </tr>
+		    <tr>
+		         <th class="th-sm red-text font-weight-bold">Cruise Name</th>
+			     <th class="th-sm red-text font-weight-bold">Ship Name</th>
+			     <th class="th-sm red-text font-weight-bold">Cruise Date</th>		  
+			     <th class="th-sm red-text font-weight-bold">State</th>
+			     <th class="th-sm red-text font-weight-bold">Destination</th>
+			     <th class="th-sm red-text font-weight-bold">Departure Port</th>
+			     <th class="th-sm red-text font-weight-bold">Edit</th>
+	     		<th class="th-sm red-text font-weight-bold">Delete</th>	     
+			</tr>
 		 </thead>
 		 
 		  <tbody>
-		    <tr ng-repeat="x in promotionsData">
-		      <td>{{x.promotionName}}</td>
-		      <td>{{x.promotionState}}</td>
-		      <td>{{x.discountAmount}}</td>
-		      <td>{{x.startDate}}</td>
-		      <td>{{x.endDate}}</td>
-		      <td><button class="btn btn-primary rounded-circle" ng-click="selectPromotion(x)" data-toggle="modal" data-target="#mdbModal">Edit</button>
-		      <td><button class="btn btn-danger rounded" ng-click="deletePromotions(x.id)">Delete</button>
+		    <tr ng-repeat="x in Cruises">
+		      <td>{{x.cruiseName}}</td>
+		      <td>{{x.shipName}}</td>
+		      <td>{{x.cruiseDate |date:format:'dd-MM-yyyy @ HH:mm:ss Z'}}</td>
+		      <td>{{x.state}}</td>
+		      <td>{{x.destination}}</td>
+		      <td>{{x.departurePort}}</td>
+		      <td><button class="btn btn-primary rounded-circle" ng-click="selectCruises(x)" data-toggle="modal" data-target="#mdbModal">Edit</button>
+		      <td><button class="btn btn-danger rounded" ng-click="deleteCruises(x.id)">Delete</button>
 		    </tr>
 <div id="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
     
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Edit Promotions</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="color:#000080">Edit Cruises</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -318,54 +332,73 @@
                 <form name="PromotionsForm">
                  
                   <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form01" ng-model="clickedPromotions.promotionName" class="form-control">
+                    <i class="fas fa-user prefix blue-text"></i>
+                    <input type="text" id="form01" ng-model="clickedCruise.cruiseName" class="form-control">
                     <label for="form01"></label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-user prefix blue-text"></i>
+                    <input type="text" id="form02" ng-model="clickedCruise.shipName" class="form-control">
+                    <label for="form02"></label>
                   </div>
                    
                   <div class="md-form">
                     <div class="row">
                     <div class="col-md-4">
-                    	<i class="fas fa-search-location prefix grey-text">State</i>
+                    	<i class="fas fa-city  blue-text">&nbsp;&nbsp;State</i>
                     </div>
                      <div class="col-md-8">
-                    	<select id="form02" ng-options="item for item in statenames" ng-model="clickedPromotions.promotionState" class="browser-default custom-select">
+                    	<select id="form03" ng-options="item for item in statenames" ng-model="clickedCruise.state" class="browser-default custom-select">
                     	</select>
                     </div>
                     </div>
                   </div>
-
+                  
                   <div class="md-form">
-                    <i class="fas fa-child prefix grey-text"></i>
-                    <input type="number" ng-model="clickedPromotions.discountAmount" step="0.01" id="form03" class="form-control">
-                    <label for="form03"></label>
+                    <div class="row">
+                    <div class="col-md-4">
+                    	<i class="fas fa-ship blue-text">&nbsp;&nbsp;Destination</i>
+                    </div>
+                     <div class="col-md-8">
+                    	<select id="form04" ng-options="item for item in destinations" ng-model="clickedCruise.destination" class="browser-default custom-select">
+                    	</select>
+                    </div>
+                    </div>
                   </div>
-                 
                   <div class="md-form">
-                    <i class="grey-text">Start Date</i>
-                    <input type="date" id="form04" ng-model="clickedPromotions.startDate" class="form-control">
-                    <label for="form04"></label>
-                  </div>               
-
-				  <div class="md-form">
-                    <i class="grey-text">End Date </i>
-                    <input type="date" id="form05" ng-model="clickedPromotions.endDate" class="form-control">
-                    <label for="form05"></label>
+	                  <div class="row">
+	                   <div class="col-md-4">
+	                    	 <i class="fas fa-ship blue-text">&nbsp;&nbsp;Departure Port</i>
+	                    </div>
+	                     <div class="col-md-8">
+	                    <select id="form05" ng-options="item for item in ports" ng-model="clickedCruise.departurePort" class="browser-default custom-select">
+		                   	</select>
+	                    </div>
+	                  </div>
                   </div>
+ 				 
+                  <div class="md-form">
+                  	<i class="fas fa-user prefix blue-text"></i>
+                    <input type="date" id="form06" ng-model="clickedCruise.cruiseDate" class="form-control blue-text">
+                    <label for="form06"></label>
+                  </div> 
+                  <style>
+                  	#form03, #form04, #form05{
+	                  	border:none;
+	                  	border-bottom:2px solid blue;
+                  	}
+                  </style> 
                 </form>
                 <!-- Form -->
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-indigo waves-light" ng-click="updatePromotions()">Save</button>
+        <button class="btn btn-indigo waves-light" ng-click="udpateCruises()">Save</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
 </div>        
-		    
-		    
-		    
 		    		   
 		  </tbody>
 		 
@@ -381,29 +414,14 @@
 </section>
 <!--Section: Display info-->
 
-        
-        </div>
-        <!-- end main container -->
-        
-        
+      
+ </div>
+ <!-- container end -->
+      
 </main>
 <!-- main -->
   <!--Footer-->
   <footer class="page-footer text-center font-small wow fadeIn">
-
-    <!--Call to action-->
-	<!-- <div class="pt-4">
-      <a class="btn btn-outline-white" href="#" target="_blank"
-        role="button">United States
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="#" target="_blank" role="button">
-        France
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div>-->
-    <!--/.Call to action-->
-
     <hr class="my-4">
 
     <!-- Social icons -->
@@ -459,23 +477,23 @@
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- MDC Modules wow -->
-   <script type="text/javascript" src="js/modules/wow.js"></script>
-  
+  <script type="text/javascript" src="js/modules/wow.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
-   
+
   </script>
-	 <script type="text/javascript">
-	    $(document).ready(function () {
-	  	  $('#dtBasicExample').DataTable();
-	  	  $('.dataTables_length').addClass('bs-select');
-	  	});
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+  	  $('#dtBasicExample').DataTable();
+  	  $('.dataTables_length').addClass('bs-select');
+  	});
     </script>
     
+  
+
  </body>
 
 </html>
- 

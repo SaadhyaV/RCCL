@@ -7,10 +7,10 @@ app
 
 					$scope.statenames = [ "Select states", "Florida",
 							"Georgia", "New Jersey", "California", "Texas",
-							"Maryland", "Louisana", "Washington",
+							"Maryland", "Louisiana", "Washington",
 							"British Columbia", "Massachusetts", "Puerto Rico" ];
 					$scope.destinations = [ "Alaska", "Asia",
-							"Australia & New Zealand", "Bahamas", "Bermuda",
+							"Australia & New Zealand", "Bahamasa", "Bermuda",
 							"Canada & New England", "Caribbean", "Europe",
 							"Hawaii", "North America", "Pacific Northwest",
 							"Panama Canal", "Repositioning", "South Pacific",
@@ -76,14 +76,4 @@ app.controller("displayCruiseCtrl", function($scope, $http) {
 		console.log("error found");
 		console.log(response.data);
 	});
-});
-
-// Basic example
-$(document).ready(function() {
-	$('#dtBasicExample2').DataTable({
-		"pagingType" : "simple" // "simple" option for 'Previous' and 'Next'
-	// buttons
-	// only
-	});
-	$('.dataTables_length').addClass('bs-select');
 });

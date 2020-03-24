@@ -41,16 +41,16 @@ public class CruiseServiceImpl {
 		return cruiseRepository.findByStateAndDestinationAndCruiseDate(state, destination, cruiseDate);
 	}
 
-	// public Cruise findById(@PathVariable("id") Integer theId) {
-	// return cruiseRepository.findBy_id(theId);
-	// }
+	public Cruise findById(@PathVariable("id") Integer theId) {
+		return cruiseRepository.findBy_id(theId);
+	}
 	
 	public Cruise save(Cruise theCruise) {
 		return cruiseRepository.save(theCruise);
 	}
 
-	// public void deleteById(@PathVariable Integer theId) {
-	// cruiseRepository.delete(cruiseRepository.findBy_id(theId));
-	// }
+	public void deleteById(@PathVariable Integer theId) {
+		cruiseRepository.delete(cruiseRepository.findBy_id(theId));
+	}
 	
 }

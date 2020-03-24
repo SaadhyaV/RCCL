@@ -25,11 +25,16 @@ public class CruiseRepositoryTest {
 
 	@Test
 	public void findAllCruises() {
-		// cruiseRepo.findByState(state);
 		List<Cruise> all = cruiseRepo.findAll();
 		for (Cruise cruise : all) {
 			System.out.println(cruise);
 		}
+	}
+
+	@Test
+	public void findById() {
+		Cruise value = cruiseRepo.findBy_id(3);
+		System.out.println(value);
 	}
 
 	// @Test

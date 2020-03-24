@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,11 +78,11 @@ public class CruiseRestController {
 		return cruiseService.findAllBySDC(state, destination, cruiseDate);
 	}
 	// add mapping for GET /cruises/{cruiseId}
-	// @CrossOrigin(origins = "*", allowedHeaders = "*")
-	// @GetMapping("/cruises/{cruiseId}")
-	// public Cruise getCruise(@PathVariable Integer cruiseId) {
-	// return cruiseService.findById(cruiseId);
-	// }
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@GetMapping("/cruisesId/{cruiseId}")
+	public Cruise getCruise(@PathVariable Integer cruiseId) {
+		return cruiseService.findById(cruiseId);
+	}
 
 	// add mapping for POST /cruises - add new cruises
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -92,6 +93,7 @@ public class CruiseRestController {
 
 		theCruise.set_id(0);
 		cruiseService.save(theCruise);
+		System.out.println(theCruise);
 		return theCruise;
 	}
 
@@ -106,17 +108,17 @@ public class CruiseRestController {
 
 
 	// add mapping for DELETE /employees/{employeeId} - delete employee
-	// @CrossOrigin(origins = "*", allowedHeaders = "*")
-	// @DeleteMapping("/deleteCruises/{cruiseId}")
-	// public String deleteEmployee(@PathVariable Integer cruiseId) {
-	// Cruise theCruise = cruiseService.findById(cruiseId);
-	// // throw exception if null
-	//
-	// if (theCruise == null) {
-	// throw new RuntimeException("Cruise Id is not found : " + cruiseId);
-	// }
-	// cruiseService.deleteById(cruiseId);
-	// return "Deleted Cruise Id : " + cruiseId;
-	// }
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@DeleteMapping("/deleteCruises/{cruiseId}")
+	public String deleteEmployee(@PathVariable Integer cruiseId) {
+		Cruise theCruise = cruiseService.findById(cruiseId);
+		// throw exception if null
+
+		if (theCruise == null) {
+			throw new RuntimeException("Cruise Id is not found : " + cruiseId);
+		}
+		cruiseService.deleteById(cruiseId);
+		return "Deleted Cruise Id : " + cruiseId;
+	}
 
 }

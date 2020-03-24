@@ -75,7 +75,7 @@ app.controller("promotionCtrl", function($scope, $http, $window) {
 	$scope.statenames = [ "Select states", "Florida", "Georgia", "New Jersey",
 			"California", "Texas", "Maryland", "louisana", "Washington",
 			"Massachusetts", "Puerto Rico" ];
-	$scope.militarystatus = [ "Retired", "Working" ];
+
 	$scope.promotions = {
 		promotionName : "",
 		promotionState : "",

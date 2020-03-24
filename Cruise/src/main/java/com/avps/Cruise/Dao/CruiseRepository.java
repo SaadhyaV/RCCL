@@ -14,7 +14,7 @@ public interface CruiseRepository extends MongoRepository<Cruise, String> {
 	// @Query("{state:'Florida'}")
 	public Cruise findByState(String state);
 
-	// public Cruise findBy_id(Integer id);
+	public Cruise findBy_id(Integer id);
 
 	public Cruise findAllByStateAndDestination(String state, String destination);
 
