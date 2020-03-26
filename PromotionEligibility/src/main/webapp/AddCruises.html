@@ -108,10 +108,6 @@
             <a class="nav-link" href="#" target="_blank">
            <span class="sr-only">(current)</span>Create Cruises
            </a>
-          </li>
-<!--      <li class="nav-item">
-            <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free tutorials</a>
-          </li>-->
         </ul>
 
         <!-- Right -->
@@ -196,7 +192,7 @@
               <div class="card-body">
 
                 <!-- Form -->
-                <form name="PromotionsForm" ng-submit="setCruises()">
+                <form name="CruiseForm" ng-submit="setCruises()">
                   <!-- Heading -->
                   <h3 class="dark-grey-text text-center">
                     <strong style="color:#000080">Set Cruises:</strong>
@@ -281,7 +277,7 @@
        </section>
        <!-- section end -->
        
-<!-- Display Promotions -->
+<!-- Display Cruises -->
 
     <!--Section: Display info-->
      <section class="mt-5 wow fadeIn" ng-controller="displayCruiseCtrl">
@@ -295,14 +291,14 @@
         <table id="dtBasicExample" class="table table-dark table-striped table-bordered table-sm" cellspacing="0" width="100%">
 		 <thead>
 		    <tr>
-		         <th class="th-sm red-text font-weight-bold">Cruise Name</th>
-			     <th class="th-sm red-text font-weight-bold">Ship Name</th>
-			     <th class="th-sm red-text font-weight-bold">Cruise Date</th>		  
-			     <th class="th-sm red-text font-weight-bold">State</th>
-			     <th class="th-sm red-text font-weight-bold">Destination</th>
-			     <th class="th-sm red-text font-weight-bold">Departure Port</th>
-			     <th class="th-sm red-text font-weight-bold">Edit</th>
-	     		<th class="th-sm red-text font-weight-bold">Delete</th>	     
+		         <th class="th-sm h6 red-text font-weight-bold">Cruise Name</th>
+			     <th class="th-sm h6 red-text font-weight-bold">Ship Name</th>
+			     <th class="th-sm h6 red-text font-weight-bold">Cruise Date</th>		  
+			     <th class="th-sm h6 red-text font-weight-bold">State</th>
+			     <th class="th-sm h6 red-text font-weight-bold">Destination</th>
+			     <th class="th-sm h6 red-text font-weight-bold">Departure Port</th>
+			     <th class="th-sm h6 red-text font-weight-bold">Edit</th>
+	     		<th class="th-sm h6 red-text font-weight-bold">Delete</th>	     
 			</tr>
 		 </thead>
 		 
@@ -314,91 +310,91 @@
 		      <td>{{x.state}}</td>
 		      <td>{{x.destination}}</td>
 		      <td>{{x.departurePort}}</td>
-		      <td><button class="btn btn-primary rounded-circle" ng-click="selectCruises(x)" data-toggle="modal" data-target="#mdbModal">Edit</button>
-		      <td><button class="btn btn-danger rounded" ng-click="deleteCruises(x.id)">Delete</button>
+		      <td><button class="btn rounded-circle" style="background-color:#808080" ng-click="selectCruises(x)" data-toggle="modal" data-target="#mdbModal">Edit</button></td>
+		      <td><button class="btn rounded-circle" style="background-color:#FF0000" ng-click="deleteCruises(x.id)">Remove</button></td>
 		    </tr>
-<div id="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="color:#000080">Edit Cruises</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-         <!-- Form -->
-                <form name="PromotionsForm">
-                 
-                  <div class="md-form">
-                    <i class="fas fa-user prefix blue-text"></i>
-                    <input type="text" id="form01" ng-model="clickedCruise.cruiseName" class="form-control">
-                    <label for="form01"></label>
-                  </div>
-                  <div class="md-form">
-                    <i class="fas fa-user prefix blue-text"></i>
-                    <input type="text" id="form02" ng-model="clickedCruise.shipName" class="form-control">
-                    <label for="form02"></label>
-                  </div>
-                   
-                  <div class="md-form">
-                    <div class="row">
-                    <div class="col-md-4">
-                    	<i class="fas fa-city  blue-text">&nbsp;&nbsp;State</i>
-                    </div>
-                     <div class="col-md-8">
-                    	<select id="form03" ng-options="item for item in statenames" ng-model="clickedCruise.state" class="browser-default custom-select">
-                    	</select>
-                    </div>
-                    </div>
-                  </div>
-                  
-                  <div class="md-form">
-                    <div class="row">
-                    <div class="col-md-4">
-                    	<i class="fas fa-ship blue-text">&nbsp;&nbsp;Destination</i>
-                    </div>
-                     <div class="col-md-8">
-                    	<select id="form04" ng-options="item for item in destinations" ng-model="clickedCruise.destination" class="browser-default custom-select">
-                    	</select>
-                    </div>
-                    </div>
-                  </div>
-                  <div class="md-form">
-	                  <div class="row">
-	                   <div class="col-md-4">
-	                    	 <i class="fas fa-ship blue-text">&nbsp;&nbsp;Departure Port</i>
-	                    </div>
-	                     <div class="col-md-8">
-	                    <select id="form05" ng-options="item for item in ports" ng-model="clickedCruise.departurePort" class="browser-default custom-select">
-		                   	</select>
-	                    </div>
-	                  </div>
-                  </div>
- 				 
-                  <div class="md-form">
-                  	<i class="fas fa-user prefix blue-text"></i>
-                    <input type="date" id="form06" ng-model="clickedCruise.cruiseDate" class="form-control blue-text">
-                    <label for="form06"></label>
-                  </div> 
-                  <style>
-                  	#form03, #form04, #form05{
-	                  	border:none;
-	                  	border-bottom:2px solid blue;
-                  	}
-                  </style> 
-                </form>
-                <!-- Form -->
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-indigo waves-light" ng-click="udpateCruises()">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>        
+					<div id="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					    
+					      <div class="modal-header text-center">
+					        <h4 class="modal-title w-100 font-weight-bold" style="color:#000080">Edit Cruises</h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body mx-3">
+					         <!-- Form -->
+					                <form name="PromotionsForm">
+					                 
+					                  <div class="md-form">
+					                    <i class="fas fa-user prefix blue-text"></i>
+					                    <input type="text" id="form01" ng-model="clickedCruise.cruiseName" class="form-control">
+					                    <label for="form01"></label>
+					                  </div>
+					                  <div class="md-form">
+					                    <i class="fas fa-user prefix blue-text"></i>
+					                    <input type="text" id="form02" ng-model="clickedCruise.shipName" class="form-control">
+					                    <label for="form02"></label>
+					                  </div>
+					                   
+					                  <div class="md-form">
+					                    <div class="row">
+					                    <div class="col-md-4">
+					                    	<i class="fas fa-city  blue-text">&nbsp;&nbsp;State</i>
+					                    </div>
+					                     <div class="col-md-8">
+					                    	<select id="form03" ng-options="item for item in statenames" ng-model="clickedCruise.state" class="browser-default custom-select">
+					                    	</select>
+					                    </div>
+					                    </div>
+					                  </div>
+					                  
+					                  <div class="md-form">
+					                    <div class="row">
+					                    <div class="col-md-4">
+					                    	<i class="fas fa-ship blue-text">&nbsp;&nbsp;Destination</i>
+					                    </div>
+					                     <div class="col-md-8">
+					                    	<select id="form04" ng-options="item for item in destinations" ng-model="clickedCruise.destination" class="browser-default custom-select">
+					                    	</select>
+					                    </div>
+					                    </div>
+					                  </div>
+					                  <div class="md-form">
+						                  <div class="row">
+						                   <div class="col-md-4">
+						                    	 <i class="fas fa-ship blue-text">&nbsp;&nbsp;Departure Port</i>
+						                    </div>
+						                     <div class="col-md-8">
+						                    <select id="form05" ng-options="item for item in ports" ng-model="clickedCruise.departurePort" class="browser-default custom-select">
+							                   	</select>
+						                    </div>
+						                  </div>
+					                  </div>
+					 				 
+					                  <div class="md-form">
+					                  	<i class="fas fa-user prefix blue-text"></i>
+					                    <input type="date" id="form06" ng-model="clickedCruise.cruiseDate" class="form-control blue-text">
+					                    <label for="form06"></label>
+					                  </div> 
+					                  <style>
+					                  	#form03, #form04, #form05{
+						                  	border:none;
+						                  	border-bottom:2px solid blue;
+					                  	}
+					                  </style> 
+					                </form>
+					                <!-- Form -->
+					
+					      </div>
+					      <div class="modal-footer d-flex justify-content-center">
+					        <button class="btn btn-indigo waves-light" data-dismiss="modal" ng-click="udpateCruises()">Save</button>
+					        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>        
 		    		   
 		  </tbody>
 		 
@@ -476,7 +472,9 @@
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MDC Modules wow -->
   <script type="text/javascript" src="js/modules/wow.js"></script>
+  
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization

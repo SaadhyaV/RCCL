@@ -26,7 +26,7 @@ app.controller("displayCruiseCtrl", function($scope, $http) {
 			"Panama Canal", "Repositioning", "South Pacific", "Transatlantic",
 			"Transpacific" ];
 	$scope.ports = [ "Miami", "Tampa", "Boston", "New York", "Canada",
-			"Hawaii", "Seattle", "Vancouver" ];
+			"Hawaii", "Seattle", "Vancouver", "Orlando Port" ];
 	// delete cruises
 	$scope.deleteCruises = function(id) {
 		console.log("Deleting id : " + id);
@@ -92,7 +92,7 @@ app.controller("addCruiseCtrl", function($scope, $http, $window) {
 			"Panama Canal", "Repositioning", "South Pacific", "Transatlantic",
 			"Transpacific" ];
 	$scope.ports = [ "Miami", "Tampa", "Boston", "New York", "Canada",
-			"Hawaii", "Seattle", "Vancouver" ];
+			"Hawaii", "Seattle", "Vancouver", "Orlando Port" ];
 	$scope.cruise = {
 		_id : "",
 		state : "",
